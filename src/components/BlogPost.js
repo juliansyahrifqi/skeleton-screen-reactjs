@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Post from './Post';
 import '../index.css';
+import SkeletonPost from '../skeletons/SkeletonPost';
 
 const BlogPost = () => {
     const [posts, setPosts] = useState(null);
@@ -22,21 +23,19 @@ const BlogPost = () => {
     `;
 
     useEffect(() => {
-        const fetchAPI = async () => {
+        setTimeout(async () => {
             const response = await fetch('https://api.hashnode.com', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-type': 'application/json',
                 },
-                body: JSON.stringify({ query })
+                body: JSON.stringify({ query }),
             })
-
             const responseData = await response.json();
-            setPosts(responseData.data.user.publication.posts);
-        } 
 
-        fetchAPI();
-    })
+            setPosts(responseData.data.user.publication.posts);
+        }, 4000);
+    });
 
     return (
         <div className="post">
@@ -45,6 +44,12 @@ const BlogPost = () => {
                     {posts.map((post, index) => (
                         <Post key={index} post={post} />
                     ))}
+                </div>
+            )}
+
+            {!posts && (
+                <div className="skeleton-container">
+                    {[1, 2, 3, 4, 5, 6].map((n) => <SkeletonPost key={n} />)}
                 </div>
             )}
         </div>
