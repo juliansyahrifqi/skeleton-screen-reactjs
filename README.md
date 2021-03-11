@@ -1,3 +1,9 @@
+**Preview**
+![preview](preview.gif)
+
+You can check live demo from this project in here
+[https://skeleton-screen-reactjs.vercel.app/](https://skeleton-screen-reactjs.vercel.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
